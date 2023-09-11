@@ -19,3 +19,9 @@ where curso = 'Engenharia de Software';
 select produto, sum(receita) as receita_total
 from vendas
 group by produto;
+
+--exercicio 06
+select autores.nome as a, count(livros.id) as qntd_de_livros
+from autores
+left join livros on autores.id = livros.autor_id
+group by autores.nome;
