@@ -68,3 +68,8 @@ left join livros on autores.id = livros.autor_id;
 select distinct matriculas.curso, alunos.nome as aluno
 from matriculas
 right join alunos on matriculas.aluno_id = alunos.id;
+
+--exercicio 15
+select distinct alunos.nome as aluno, matriculas.curso
+from alunos
+inner join matriculas on alunos.id = matriculas.aluno_id;
