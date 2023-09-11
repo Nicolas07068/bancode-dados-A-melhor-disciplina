@@ -25,3 +25,8 @@ select autores.nome as a, count(livros.id) as qntd_de_livros
 from autores
 left join livros on autores.id = livros.autor_id
 group by autores.nome;
+
+--exercicio 07
+select matriculas.curso as curso, count(*) as qntd_de_alunos_por_materia
+from matriculas
+group by matriculas.curso;
