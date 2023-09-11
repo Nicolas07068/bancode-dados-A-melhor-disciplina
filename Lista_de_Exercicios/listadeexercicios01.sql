@@ -81,3 +81,9 @@ join livros on autores.id = livros.autor_id
 group by autores.nome
 order by Quantidade_de_Livros desc
 limit 1;
+
+--exercicio 17
+select produto, min(receita) as menor_receita
+from vendas
+group by  produto
+limit 1;
