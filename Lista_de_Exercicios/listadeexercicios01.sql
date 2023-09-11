@@ -41,3 +41,10 @@ select produto, sum(receita) as receita_total
 from vendas
 group by produto
 having sum(receita) > 10000;
+
+--exercicio 10
+select autores.nome as autores, count(livros.id) as qntd_de_livros
+from autores
+left join livros on autores.id = livros.autor_id
+group by autores.nome
+having count(livros.id) > 2;
