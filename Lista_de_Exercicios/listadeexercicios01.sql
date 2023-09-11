@@ -30,3 +30,8 @@ group by autores.nome;
 select matriculas.curso as curso, count(*) as qntd_de_alunos_por_materia
 from matriculas
 group by matriculas.curso;
+
+--exercicio 08
+select produto, avg(receita) as media_total
+from vendas
+group by produto;
