@@ -94,3 +94,10 @@ from alunos a
 left join matriculas m on a.id = m.aluno_id
 group by a.nome
 order by total_matriculas desc ;
+
+-- exercicio 20
+select produto, count(*) as qntd_transacoes
+from vendas
+group by produto
+order by qntd_transacoes desc
+limit 1;
