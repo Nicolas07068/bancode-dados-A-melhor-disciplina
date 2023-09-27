@@ -121,3 +121,22 @@ delimiter ;
 
 call sp_AdicionarLivro('Nova Aventura', 1, 2022, 400, 3, @mensagem);
 select @mensagem;
+
+
+-- exercicio 08
+
+delimiter //
+
+create procedure sp_AutorMaisAntigo(out nomeAutorMaisAntigo varchar(255))
+begin
+  select concat(Nome, ' ', Sobrenome) into nomeAutorMaisAntigo
+  from Autor
+  order by Data_Nascimento asc
+  limit 1;
+end //
+
+delimiter ;
+
+
+call sp_AutorMaisAntigo(@nomeAutorMaisAntigo);
+select @nomeAutorMaisAntigo;
