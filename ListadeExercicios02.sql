@@ -25,7 +25,6 @@ end //
 
 delimiter ;
 
-
 call sp_LivrosPorCategoria('Ciência');
 
 
@@ -44,6 +43,26 @@ end //
 
 delimiter ;
 
-
 call sp_ContarLivrosPorCategoria('Romance', @contagem);
 select @contagem;
+
+
+-- exercicio 04
+
+delimiter //
+
+create procedure sp_VerificarLivrosCategoria(in categoriaNome varchar(100), out possuiLivros boolean)
+begin
+  declare contador int;
+  call sp_ContarLivrosPorCategoria(categoriaNome, contador);
+  if contador > 0 then
+    set possuiLivros = true;
+  else
+    set possuiLivros = false;
+  end if;
+end //
+
+delimiter ;
+
+call sp_VerificarLivrosCategoria('Ficção Científica', @possuiLivros);
+select @possuiLivros;
