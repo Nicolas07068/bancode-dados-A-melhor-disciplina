@@ -96,5 +96,28 @@ end //
 
 delimiter ;
 
-
 call sp_TitulosPorCategoria('Autoajuda');
+
+
+-- exercicio 07
+
+delimiter //
+
+create procedure sp_AdicionarLivro(in tituloLivro varchar(255), in editoraID int, in anoPublicacao int, in numPaginas int, in categoriaID int, out mensagem varchar(255))
+begin
+  declare exit handler for sqlexception 
+  begin
+    set mensagem = 'Erro: Não foi possível adicionar o livro. Verifique se o título já existe.';
+  end;
+
+  insert into Livro (Titulo, Editora_ID, Ano_Publicacao, Numero_Paginas, Categoria_ID)
+  values (tituloLivro, editoraID, anoPublicacao, numPaginas, categoriaID);
+  
+  set mensagem = 'Livro adicionado com sucesso.';
+end //
+
+delimiter ;
+
+
+call sp_AdicionarLivro('Nova Aventura', 1, 2022, 400, 3, @mensagem);
+select @mensagem;
