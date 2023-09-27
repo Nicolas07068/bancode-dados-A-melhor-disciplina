@@ -80,3 +80,21 @@ end //
 delimiter ;
 
 call sp_LivrosAteAno(2010);
+
+
+-- exercicio 06
+
+delimiter //
+
+create procedure sp_TitulosPorCategoria(in categoriaNome varchar(100))
+begin
+  select Livro.Titulo
+  from Livro
+  join Categoria on Livro.Categoria_ID = Categoria.Categoria_ID
+  where Categoria.Nome = categoriaNome;
+end //
+
+delimiter ;
+
+
+call sp_TitulosPorCategoria('Autoajuda');
