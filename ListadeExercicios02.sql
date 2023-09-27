@@ -137,6 +137,34 @@ end //
 
 delimiter ;
 
+-- exercicio 09
+
+-- utilizei a procedure sp_LivrosPorCategoria de exemplo
+
+
+-- Definindo um novo delimitador para permitir a criação da stored procedure.
+delimiter //
+
+-- Criando a stored procedure sp_LivrosPorCategoria com um parâmetro de entrada categoriaNome.
+create procedure sp_LivrosPorCategoria(in categoriaNome varchar(100))
+begin
+  -- Selecionando o título dos livros da tabela Livro que pertencem à categoria especificada.
+  -- A cláusula JOIN é usada para conectar a tabela Livro à tabela Categoria com base no ID da categoria.
+  select Livro.Titulo
+  from Livro
+  join Categoria on Livro.Categoria_ID = Categoria.Categoria_ID
+  -- Filtrando os resultados para incluir apenas os livros da categoria especificada.
+  where Categoria.Nome = categoriaNome;
+end //
+
+-- Restaurando o delimitador padrão.
+delimiter ;
+
+-- Para testar a stored procedure, você pode chamá-la com o nome da categoria desejada.
+-- Por exemplo, para listar os títulos de livros da categoria 'Ciência':
+-- CALL sp_LivrosPorCategoria('Ciência');
+
+
 
 call sp_AutorMaisAntigo(@nomeAutorMaisAntigo);
 select @nomeAutorMaisAntigo;
