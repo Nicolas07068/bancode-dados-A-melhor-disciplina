@@ -1,4 +1,4 @@
---exercicio 01
+-- exercicio 01
 
 delimiter //
 
@@ -11,7 +11,7 @@ delimiter ;
 
 call sp_ListarAutores();
 
---exercicio 02
+-- exercicio 02
 
 delimiter //
 
@@ -27,3 +27,23 @@ delimiter ;
 
 
 call sp_LivrosPorCategoria('Ciência');
+
+
+-- exercicio 03
+
+delimiter //
+
+create procedure sp_ContarLivrosPorCategoria(in categoriaNome varchar(100), out contador int)
+begin
+  select count(*)
+  into contador
+  from Livro
+  join Categoria on Livro.Categoria_ID = Categoria.Categoria_ID
+  where Categoria.Nome = categoriaNome;
+end //
+
+delimiter ;
+
+
+call sp_ContarLivrosPorCategoria('Romance', @contagem);
+select @contagem;
