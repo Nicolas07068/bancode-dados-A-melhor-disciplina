@@ -66,3 +66,17 @@ delimiter ;
 
 call sp_VerificarLivrosCategoria('Ficção Científica', @possuiLivros);
 select @possuiLivros;
+
+
+-- exercicio 05 
+
+delimiter //
+
+create procedure sp_LivrosAteAno(in ano int)
+begin
+  select * from Livro where Ano_Publicacao <= ano;
+end //
+
+delimiter ;
+
+call sp_LivrosAteAno(2010);
