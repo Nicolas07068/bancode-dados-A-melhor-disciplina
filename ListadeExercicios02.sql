@@ -168,3 +168,21 @@ delimiter ;
 
 call sp_AutorMaisAntigo(@nomeAutorMaisAntigo);
 select @nomeAutorMaisAntigo;
+
+
+-- exercicio 10
+
+delimiter //
+
+create procedure sp_LivrosESeusAutores()
+begin
+  select Livro.Titulo, concat(Autor.Nome, ' ', Autor.Sobrenome) as Autor
+  from Livro
+  join Autor_Livro on Livro.Livro_ID = Autor_Livro.Livro_ID
+  join Autor on Autor_Livro.Autor_ID = Autor.Autor_ID;
+end //
+
+delimiter ;
+
+
+call sp_LivrosESeusAutores();
